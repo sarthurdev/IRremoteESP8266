@@ -870,6 +870,28 @@ namespace irutils {
     return result + ')';
   }
 
+  /// Create a String of human output for the given 2Flow setting.
+  /// e.g. "2Flow: 0 (Auto)"
+  /// @param[in] twoflow The numeric value of 2Flow to display.
+  /// @param[in] automatic The numeric value for Auto position.
+  /// @param[in] off The numeric value for Off position.
+  /// @return The resulting String.
+  String add2FlowToString(const uint8_t twoflow, const uint8_t automatic,
+                           const uint8_t off) {
+    String result = "";
+    result.reserve(17);  // ", 2Flow: N (Auto)"
+    result += addIntToString(twoflow, kTwoFlowStr);
+    result += kSpaceLBraceStr;
+    if (twoflow == automatic) {
+      result += kAutoStr;
+    } else if (twoflow == off) {
+      result += kOffStr;
+    } else {
+      result += kUnknownStr;
+    }
+    return result + ')';
+  }
+
   /// Escape any special HTML (unsafe) characters in a string. e.g. anti-XSS.
   /// @param[in] unescaped A String containing text to make HTML safe.
   /// @return A string that is HTML safe.

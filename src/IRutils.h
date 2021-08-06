@@ -83,6 +83,8 @@ namespace irutils {
                            const uint8_t low, const uint8_t lowest,
                            const uint8_t off, const uint8_t swing,
                            const uint8_t breeze, const uint8_t circulate);
+  String add2FlowToString(const uint8_t twoflow, const uint8_t automatic,
+                          const uint8_t off);
   String addDayToString(const uint8_t day_of_week, const int8_t offset = 0,
                         const bool precomma = true);
   String htmlEscape(const String unescaped);

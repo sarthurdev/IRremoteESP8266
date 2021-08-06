@@ -84,6 +84,7 @@ const uint32_t kMitsubishi112Gap = kDefaultMessageGap;
 const uint8_t  kMitsubishi112HdrMarkTolerance = 5;
 
 
+using irutils::add2FlowToString;
 using irutils::addBoolToString;
 using irutils::addFanToString;
 using irutils::addIntToString;
@@ -704,6 +705,16 @@ void IRMitsubishiAC::setWeeklyTimerEnabled(const bool on) {
 /// @return true, the setting is on. false, the setting is off.
 bool IRMitsubishiAC::getWeeklyTimerEnabled(void) const { return _.WeeklyTimer; }
 
+/// Change the 2Flow setting.
+/// @param[in] new 2Flow mode value
+void IRMitsubishiAC::set2Flow(const uint8_t twoflow) {
+  _.TwoFlow = twoflow;
+}
+
+/// Get the value of the 2Flow setting.
+/// @return 2Flow value (auto, off)
+uint8_t IRMitsubishiAC::get2Flow(void) const { return _.TwoFlow; }
+
 /// Convert the internal state into a human readable string.
 /// @return A string containing the settings in human-readable form.
 String IRMitsubishiAC::toString(void) const {
@@ -765,6 +776,7 @@ String IRMitsubishiAC::toString(void) const {
       result += ')';
   }
   result += addBoolToString(_.WeeklyTimer, kWeeklyTimerStr);
+  result += add2FlowToString(_.TwoFlow, kMitsubishiAc2FlowAuto, kMitsubishiAc2FlowOff);
   return result;
 }
 

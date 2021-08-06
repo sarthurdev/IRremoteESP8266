@@ -111,6 +111,9 @@
 #ifndef D_STR_IFEEL
 #define D_STR_IFEEL "IFeel"
 #endif  // D_STR_IFEEL
+#ifndef D_STR_TWOFLOW
+#define D_STR_TWOFLOW "2Flow"
+#endif  // D_STR_TWOFLOW
 #ifndef D_STR_HUMID
 #define D_STR_HUMID "Humid"
 #endif  // D_STR_HUMID

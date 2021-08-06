@@ -33,6 +33,8 @@
 //   Brand: Mitsubishi Electric,  Model: RH151/M21ED6426 remote (MITSUBISHI_AC)
 //   Brand: Mitsubishi Electric,  Model: MSZ-SF25VE3 A/C (MITSUBISHI_AC)
 //   Brand: Mitsubishi Electric,  Model: SG15D remote (MITSUBISHI_AC)
+//   Brand: Mitsubishi Electric,  Model: MFZ-KJ25VE2 A/C (MITSUBISHI_AC)
+//   Brand: Mitsubishi Electric,  Model: SG161 remote (MITSUBISHI_AC)
 
 #ifndef IR_MITSUBISHI_H_
 #define IR_MITSUBISHI_H_
@@ -84,8 +86,10 @@ union Mitsubishi144Protocol{
     uint8_t Timer       :3;
     uint8_t WeeklyTimer :1;
     uint8_t             :4;
-    // Byte 14~16
-    uint8_t pad1[3];
+    // Byte 14~15
+    uint8_t pad1[2];
+    // Byte 16
+    uint8_t TwoFlow: 2;
     // Byte 17
     uint8_t Sum   :8;
   };
@@ -123,6 +127,8 @@ const uint8_t kMitsubishiAcNoTimer = 0;
 const uint8_t kMitsubishiAcStartTimer = 5;
 const uint8_t kMitsubishiAcStopTimer = 3;
 const uint8_t kMitsubishiAcStartStopTimer = 7;
+const uint8_t kMitsubishiAc2FlowAuto = 0;
+const uint8_t kMitsubishiAc2FlowOff = 2;
 
 /// Native representation of a Mitsubishi 136-bit A/C message.
 union Mitsubishi136Protocol{
@@ -283,6 +289,8 @@ class IRMitsubishiAC {
   void setTimer(const uint8_t timer);
   bool getWeeklyTimerEnabled(void) const;
   void setWeeklyTimerEnabled(const bool on);
+  uint8_t get2Flow(void) const;
+  void set2Flow(const uint8_t twoflow);
   static uint8_t convertMode(const stdAc::opmode_t mode);
   static uint8_t convertFan(const stdAc::fanspeed_t speed);
   static uint8_t convertSwingV(const stdAc::swingv_t position);
